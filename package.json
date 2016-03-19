@@ -1,0 +1,21 @@
+{
+  "name": "generator-angular-webpack-es6",
+  "version": "0.0.9",
+  "description": "Yeoman generator for angular 1.5+, webpack, ES6",
+  "main": "index.js",
+  "dependencies": {
+    "yeoman-generator": "^0.22.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "yeoman",
+    "generator",
+    "angular",
+    "webpack",
+    "es6"
+  ],
+  "author": "Andrew Kamarouski",
+  "license": "MIT"
+}
