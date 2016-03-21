@@ -11,14 +11,16 @@ var PROD = JSON.parse(process.env.PROD_ENV || '0');
 var DEV = !PROD;
 
 var settings = {
-    destDir: '/research/public/'
+    destDir: '/<%= outputDir %>/'
 };
+
+settings.root = path.join(__dirname, path.dirname(settings.destDir));
 
 var plugins = [
     new ExtractTextPlugin("[hash]/[name].css"),
     new AssetsWebpackPlugin(),
-    new CleanWebpackPlugin(["public"], {
-        root: path.join(__dirname,'/research'),
+    new CleanWebpackPlugin([settings.destDir.split('/').slice(-2)[0]], {
+        root: settings.root,
         versbose: true,
         dry: false
     }),
@@ -48,13 +50,14 @@ if (DEV) {
 module.exports = {
   cache: true,
   context: __dirname,
-  entry: './app/app.js',
+  entry: './app/<%= appName %>.js',
   output: {
-    filename: '[hash]/name.js'
+    filename: '[hash]/name.js',
+    path: path.join(__dirname, "<%= outputDir %>"),
   },
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['es2105']}}
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['es2015']}},
       { test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?" + (PROD ? "minimize" : "-minimize") + "!sass-loader") },
       { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?" + (PROD ? "minimize" : "-minimize")) },
       { test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader?name=fonts/[name].[ext]' },
