@@ -13,11 +13,11 @@ It's a very early version of the generator. Any feedback is welcome.
 
 ## Setting up project
 
-* Install: `npm install -g yo generator-angular-webpack-es6`
-* Run: `yo angular-webpack-es6`
+* Install: `npm install -g yo generator-angular-components-es6`
+* Run: `yo angular-components-es6`
 
 ## Commands
-* `yo angular-webpack-es6` shows a wizard for generation of a new generator
+* `yo angular-components-es6` shows a wizard for generation of a new generator
 
 ## Generated Structure
 ```
