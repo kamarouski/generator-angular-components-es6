@@ -1,4 +1,4 @@
-# Generator Angular Webpack ES6
+# Generator Angular Components ES6
 [![npm](https://img.shields.io/npm/l/generator-angular2-webpack-starter.svg)](http://opensource.org/licenses/MIT)
 
 A [Yeoman](http://yeoman.io) generator to bootstrap Angular application with Webpack and ES6 classes.

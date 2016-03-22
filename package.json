@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-components-es6",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "Yeoman generator for angular 1.5+ with webpack and ES6",
   "main": "app/index.js",
   "dependencies": {
