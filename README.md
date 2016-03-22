@@ -6,6 +6,11 @@ A [Yeoman](http://yeoman.io) generator to bootstrap Angular application with Web
 ## Contribution
 It's a very early version of the generator. Any feedback is welcome.
 
+**TODO:**
+* Add component generator
+* Add routing support
+* Add webpack dev server support
+
 ## Setting up project
 
 * Install: `npm install -g yo generator-angular-webpack-es6`
