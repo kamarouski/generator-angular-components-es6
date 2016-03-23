@@ -9,8 +9,11 @@ module.exports = generators.Base.extend({
       "message": "Component name",
       default: "myComponent"
     }], function(answers) {
-        this.componentName = answers.componentName;
-        this.componentFileName = answers.componentName.replace(/\.?([A-Z]+)/g, function(x, y){return '-' + y.toLowerCase()})
+        var paths = answers.componentName.split('/');
+        this.componentName = paths[paths.length - 1];
+        this.componentsPath = answers.componentName;
+
+        this.componentFileName = this.componentName.replace(/\.?([A-Z]+)/g, function(x, y){return '-' + y.toLowerCase()})
       done();
     }.bind(this));
   },
@@ -20,20 +23,11 @@ module.exports = generators.Base.extend({
            componentFileName: this.componentFileName,
            componentClassName: this.componentName.charAt(0).toUpperCase() + this.componentName.slice(1)
        };
-      this.fs.copyTpl(this.templatePath('_component.js'),
-                      this.destinationPath('app/components/' + this.componentName + '/' + this.componentFileName + '-component.js'),
-                      args);
+       var pathPrefix = 'app/components/' + this.componentsPath + '/' + this.componentFileName;
 
-      this.fs.copyTpl(this.templatePath('_controller.js'),
-                      this.destinationPath('app/components/' + this.componentName + '/' + this.componentFileName + '-controller.js'),
-                      args);
-
-      this.fs.copyTpl(this.templatePath('_template.html'),
-                      this.destinationPath('app/components/' + this.componentName + '/' + this.componentFileName + '.html'),
-                      args);
-
-      this.fs.copyTpl(this.templatePath('_styles.scss'),
-                      this.destinationPath('app/components/' + this.componentName + '/' + this.componentFileName + '.scss'),
-                      args);
+      this.fs.copyTpl(this.templatePath('_component.js'), this.destinationPath(pathPrefix + '-component.js'), args);
+      this.fs.copyTpl(this.templatePath('_controller.js'), this.destinationPath(pathPrefix + '-controller.js'), args);
+      this.fs.copyTpl(this.templatePath('_template.html'), this.destinationPath(pathPrefix + '.html'), args);
+      this.fs.copyTpl(this.templatePath('_styles.scss'), this.destinationPath(pathPrefix + '.scss'), args);
   }
 });
